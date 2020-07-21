@@ -9,7 +9,7 @@ export const Chart = ({ country }: { country: Country | undefined }) => {
 
   useEffect(() => {
     const fetchAPI = async () => {
-      setDailyData(await fetchDailyData(country ? country.Country : undefined));
+      setDailyData(await fetchDailyData(country ? country.Slug : undefined));
     };
     fetchAPI();
   }, [country]);
