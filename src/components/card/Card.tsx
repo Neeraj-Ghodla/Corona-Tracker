@@ -1,5 +1,6 @@
 import React from "react";
 import CountUp from "react-countup";
+import Card from "react-bootstrap/Card";
 
 import { GlobalSummary, CountrySummary } from "../../types/types";
 
@@ -8,7 +9,7 @@ interface ICardProps {
   countrySummary?: CountrySummary | undefined;
 }
 
-const Card = (props: ICardProps) => {
+const SummaryCard = (props: ICardProps) => {
   if (!props.summary && !props.countrySummary) {
     return (
       <div
@@ -24,93 +25,114 @@ const Card = (props: ICardProps) => {
     return (
       <div className="row justify-content-center my-3">
         <div className="col-md-3 col-12">
-          <div className="card">
-            <div className="card-body">
-              <h6 className="card-subtitle mb-2 text-muted">
+          <Card>
+            <Card.Body>
+              <Card.Subtitle className="mb-2 text-muted">
                 CONFIRMED
-              </h6>
-              <h2 className="card-title">
-                <CountUp
-                  start={0}
-                  end={
-                    props.summary
-                      ? props.summary!.TotalConfirmed
-                      : props.countrySummary!.TotalConfirmed
-                  }
-                  duration={2}
-                  separator=","
-                />
-              </h2>
-              <h6 className="card-subtitle mb-2 text-muted">
+              </Card.Subtitle>
+              <Card.Title>
+                <h2>
+                  <CountUp
+                    start={0}
+                    end={
+                      props.summary
+                        ? props.summary!.TotalConfirmed
+                        : props.countrySummary!.TotalConfirmed
+                    }
+                    duration={2}
+                    separator=","
+                  />
+                </h2>
+              </Card.Title>
+              <Card.Subtitle className="mb-2 text-muted">
                 {props.summary
                   ? props.summary!.Date
                   : props.countrySummary!.Date}
-              </h6>
-              <p className="card-text">
-              Total number of infected cases <strong>{props.summary ? "Globally" : `in ${props.countrySummary!.Country}`}</strong>              </p>
-            </div>
-          </div>
+              </Card.Subtitle>
+              <Card.Text>
+                Total number of infected cases{" "}
+                <strong>
+                  {props.summary
+                    ? "Globally"
+                    : `in ${props.countrySummary!.Country}`}
+                </strong>{" "}
+              </Card.Text>
+            </Card.Body>
+          </Card>
         </div>
         <div className="col-md-3 col-12">
-          <div className="card">
-            <div className="card-body">
-              <h6 className="card-subtitle mb-2 text-muted">
-                DEATHS
-              </h6>
-              <h2 className="card-title">
-              <CountUp
-                  start={0}
-                  end={
-                    props.summary
-                      ? props.summary!.TotalDeaths
-                      : props.countrySummary!.TotalDeaths
-                  }
-                  duration={2}
-                  separator=","
-                />
-              </h2>
-              <h6 className="card-subtitle mb-2 text-muted">
+          <Card>
+            <Card.Body>
+              <Card.Subtitle className="mb-2 text-muted">DEATHS</Card.Subtitle>
+              <Card.Title>
+                <h2>
+                  <CountUp
+                    start={0}
+                    end={
+                      props.summary
+                        ? props.summary!.TotalDeaths
+                        : props.countrySummary!.TotalDeaths
+                    }
+                    duration={2}
+                    separator=","
+                  />
+                </h2>
+              </Card.Title>
+              <Card.Subtitle className="mb-2 text-muted">
                 {props.summary
                   ? props.summary!.Date
                   : props.countrySummary!.Date}
-              </h6>
-              <p className="card-text">
-              Total number of deaths <strong>{props.summary ? "Globally" : `in ${props.countrySummary!.Country}`}</strong>              </p>
-            </div>
-          </div>
+              </Card.Subtitle>
+              <Card.Text>
+                Total number of infected cases{" "}
+                <strong>
+                  {props.summary
+                    ? "Globally"
+                    : `in ${props.countrySummary!.Country}`}
+                </strong>{" "}
+              </Card.Text>
+            </Card.Body>
+          </Card>
         </div>
         <div className="col-md-3 col-12">
-          <div className="card">
-            <div className="card-body">
-              <h6 className="card-subtitle mb-2 text-muted">
-                RECOVERED
-              </h6>
-              <h2 className="card-title">
-              <CountUp
-                  start={0}
-                  end={
-                    props.summary
-                      ? props.summary!.TotalRecovered
-                      : props.countrySummary!.TotalRecovered
-                  }
-                  duration={2}
-                  separator=","
-                />
-              </h2>
-              <h6 className="card-subtitle mb-2 text-muted">
+          <Card>
+            <Card.Body>
+              <Card.Subtitle className="mb-2 text-muted">
+                CONFIRMED
+              </Card.Subtitle>
+              <Card.Title>
+                <h2>
+                  <CountUp
+                    start={0}
+                    end={
+                      props.summary
+                        ? props.summary!.TotalRecovered
+                        : props.countrySummary!.TotalRecovered
+                    }
+                    duration={2}
+                    separator=","
+                  />
+                </h2>
+              </Card.Title>
+              <Card.Subtitle className="mb-2 text-muted">
                 {props.summary
                   ? props.summary!.Date
                   : props.countrySummary!.Date}
-              </h6>
-              <p className="card-text">
-                Total number of recovered cases <strong>{props.summary ? "Globally" : `in ${props.countrySummary!.Country}`}</strong>
-              </p>
-            </div>
-          </div>
+              </Card.Subtitle>
+              <Card.Text>
+                Total number of infected cases{" "}
+                <strong>
+                  {props.summary
+                    ? "Globally"
+                    : `in ${props.countrySummary!.Country}`}
+                </strong>{" "}
+              </Card.Text>
+            </Card.Body>
+          </Card>
         </div>
       </div>
     );
   }
 };
 
-export default Card;
+export default SummaryCard;
