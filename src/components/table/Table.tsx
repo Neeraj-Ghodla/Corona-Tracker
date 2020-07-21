@@ -17,7 +17,7 @@ const SummaryTable = () => {
   }, []);
 
   return (
-    <Table striped responsive-sm className="mb-5">
+    <Table striped responsive="sm" className="mb-5">
       <thead>
         <tr>
           <th>Country</th>
