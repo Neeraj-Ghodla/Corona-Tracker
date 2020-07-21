@@ -20,12 +20,19 @@ export default function App() {
     undefined
   );
 
+  // for global summary
   useEffect(() => {
     const fetchAPI = async () => {
-      if (currentCountry) {
-        setSummary(undefined);
+      setSummary(await fetchSummary());
+    };
+    fetchAPI();
+  }, []);
+
+  // for the summary of a specific country
+  useEffect(() => {
+    const fetchAPI = async () => {
+      if (currentCountry)
         setCountrySummary(await fetchCountrySummary(currentCountry.Slug));
-      } else setSummary(await fetchSummary());
     };
     fetchAPI();
   }, [currentCountry]);
@@ -35,7 +42,12 @@ export default function App() {
       <div className="row justify-content-center my-3 mb-5">
         <img className="img-fluid" src={coronaImage} alt="COVID-19" />
       </div>
-      <Card summary={summary} countrySummary={countrySummary}></Card>
+      <Card
+        summary={currentCountry === undefined ? summary : undefined}
+        countrySummary={
+          currentCountry !== undefined ? countrySummary : undefined
+        }
+      ></Card>
       <CountryPicker onCountryChange={setCurrentCountry} />
       <Tabs defaultActiveKey="chart" className="justify-content-center">
         <Tab eventKey="chart" title="Chart">
