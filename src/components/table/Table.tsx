@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import Table from "react-bootstrap/Table";
 
 import { CountrySummary } from "../../types/types";
 import { fetchSummaryOfAllCountries } from "../../api";
 
-const Table = () => {
+const SummaryTable = () => {
   const [allSummary, setAllSummary] = useState<CountrySummary[] | undefined>(
     undefined
   );
@@ -16,7 +17,7 @@ const Table = () => {
   }, []);
 
   return (
-    <table className="table table-striped table-responsive-sm mb-5">
+    <Table striped responsive-sm className="mb-5">
       <thead>
         <tr>
           <th>Country</th>
@@ -41,8 +42,8 @@ const Table = () => {
           </tr>
         ))}
       </tbody>
-    </table>
+    </Table>
   );
 };
 
-export default Table;
+export default SummaryTable;
