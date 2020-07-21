@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Form from "react-bootstrap/Form";
 
 import { Country } from "../../types/types";
 import { fetchCountries } from "../../api";
@@ -19,24 +20,27 @@ const CountryPicker = ({
 
   return (
     <div className="row justify-content-center">
-      <div className="form-group col-md-6">
-        <select
-          className="form-control"
-          id="exampleFormControlSelect1"
-          onChange={(e) => {
-            if (e.target.value === "Global") onCountryChange(undefined);
-            const country = countries?.filter(
-              (country: Country) => country.Country === e.target.value
-            )[0];
-            onCountryChange(country!);
-          }}
-        >
-          <option value="global">Global</option>
-          {countries?.map((country: Country) => (
-            <option key={country.Country}>{country.Country}</option>
-          ))}
-        </select>
-      </div>
+      <Form className="col-lg-6 col-sm-10">
+        <Form.Group>
+          <Form.Control
+            as="select"
+            onChange={(e) => {
+              if (e.target.value === "Global") onCountryChange(undefined);
+              const country = countries?.filter(
+                (country: Country) => country.Country === e.target.value
+              )[0];
+              onCountryChange(country!);
+            }}
+          >
+            <option value="global">Global</option>
+            {countries?.map((country: Country) => (
+              <option key={country.Country} value={country.Country}>
+                {country.Country}
+              </option>
+            ))}
+          </Form.Control>
+        </Form.Group>
+      </Form>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import { Country, Dailydata } from "../../types/types";
 import { fetchDailyData } from "../../api";
+import Container from "react-bootstrap/Container";
 
 export const Chart = ({ country }: { country: Country | undefined }) => {
   const [dailyData, setDailyData] = useState<Dailydata | undefined>(undefined);
@@ -48,9 +49,9 @@ export const Chart = ({ country }: { country: Country | undefined }) => {
   ) : null;
 
   return (
-    <div className="container">
+    <Container>
       <div className="row justify-content-center mt-3 mb-5">{lineChart}</div>
-    </div>
+    </Container>
   );
 };
 
