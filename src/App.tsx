@@ -5,6 +5,7 @@ import Card from "./components/card/Card";
 import CountryPicker from "./components/countryPicker/CountryPicker";
 import Chart from "./components/chart/Chart";
 import Table from "./components/table/Table";
+import Container from "react-bootstrap/Container";
 
 import { fetchSummary, fetchCountrySummary } from "./api/index";
 import { GlobalSummary, CountrySummary, Country } from "./types/types";
@@ -30,7 +31,7 @@ export default function App() {
   }, [currentCountry]);
 
   return (
-    <div className="container">
+    <Container>
       <div className="row justify-content-center my-3 mb-5">
         <img className="img-fluid" src={coronaImage} alt="COVID-19" />
       </div>
@@ -44,6 +45,6 @@ export default function App() {
           <Table />
         </Tab>
       </Tabs>
-    </div>
+    </Container>
   );
 }
